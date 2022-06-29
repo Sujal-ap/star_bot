@@ -1,15 +1,13 @@
-from aiogram import Bot, Dispatcher, executor, types 
 
-bot = Bot(token='5562962906:AAFiAQPkfnD0TZ8vi6WGL-w0iHm5cl_3a6g')
-dp = Dispatcher(bot)
+import requests
 
-@dp.message_handler(commands=['start', 'help'])
-async def welcome(message: types,Message):
-    await message.reply("hello I'm STAR BOT")
-  
-@dp.message_handler()
-async def echo(message: types.Message):
-  await message.answer(message.text)
+base_url = "https://api.telegram.org/bot5433576994:AAFGJ3b0cpi99caRD0JxSTpizERLE-bjMS0/sendmessage"
 
+parameters = {
+  "chat_id" : "-1001557666214",
+   "text" : "hello"
+}
 
-executor.start_polling(dp)
+resp = requests.get(base_url, data = parameters)
+
+print(resp.text)
